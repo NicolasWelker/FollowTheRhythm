@@ -13,6 +13,17 @@
     // background-color: blue
 }
 
+// .profileSelect{
+//     padding: 1rem;
+//     border: 5px solid white;
+//     border-radius: 20px;
+//     margin: 10px;
+//     // margin-bottom: 5px;
+//     flex-flow: column wrap;   //stack items 
+//     flex-direction: column;
+
+// }
+
 .auth-form-container, .login-form, .register-form{
     display: flex; 
     flex-direction: column;
@@ -27,7 +38,7 @@
     padding: 5rem;
     border: 1px solid white;
     border-radius: 10px;
-    margin: 0.5;
+    margin: 0.5px;
 }
 
 

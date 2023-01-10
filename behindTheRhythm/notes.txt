@@ -1,0 +1,11 @@
+
+
+
+    "dev": "nodemon server.js" 
+
+
+created a script can now run npm run dev
+
+
+npm install dotenv  
+

@@ -1,5 +1,6 @@
-import React, {useState} from "react"
+// import React, {useState} from "react"
 import useForm from "../hooks/useForm";
+import "../styles/register.scss";
 
 
 
@@ -14,7 +15,7 @@ export const Register =(props) => {
     //     console.log(email)
 
     // }
-    
+
     //Final submit function
     const formLogin = () => {
 
@@ -52,7 +53,13 @@ export const Register =(props) => {
                 {
                     errors.password && <h3>{errors.password}</h3>
                 }
-
+                <div className= "profileSelect">
+                    <input type="radio" value="Fan" name="profile" /> Fan
+                </div>
+                <div className= "profileSelect">
+                    <input type="radio" value="Artist" name="profile" /> Artist
+                </div>
+                
                 <button type="submit">Log In</button>
             </form>
         <button className="link-btn" onClick={() => props.onFormSwitch('login')}>Already have an account? Login here.</button>

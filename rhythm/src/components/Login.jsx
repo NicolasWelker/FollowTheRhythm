@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+// import React, {useState} from "react";
 import useForm from "../hooks/useForm";
 
 import '../styles/App.scss';
@@ -35,8 +35,6 @@ export const Login =(props) => {
                     errors.email && <h3>{errors.email}</h3>
                 }
 
-
-
                 <label htmlFor="password">password</label>
                 {/* <input value={pass} onChange={(e) => setPass(e.target.value)} type="password" placeholder="********" id="password" name="password" /> */}
                
@@ -44,6 +42,9 @@ export const Login =(props) => {
                 {
                     errors.password && <h3>{errors.password}</h3>
                 }
+
+
+                {/* <input type="radio" value="Other" name="gender" /> Other        */}
 
                 <button type="submit">Log In</button>
             </form>
