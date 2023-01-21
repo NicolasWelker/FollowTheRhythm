@@ -8,25 +8,27 @@ const useForm = (callback) => {
     //Errors
     const [errors, setErrors] = useState({});
 
-
+    function hasWhiteSpace(s) {
+        return s.indexOf(' ') >= 0;
+      }
 
     const validate = (event, name, value) => {
         //A function to validate each input values
 
         switch (name) {
-            case 'username':
-                if(value.length <= 4){
+            case 'fullName':
+                if(!hasWhiteSpace(value)){
                     // we will set the error state
 
                     setErrors({
                         ...errors,
-                        username:'Username atleast have 5 letters'
+                        fullName:'A full name is at least 2 words'
                     })
                 }else{
                     // set the error state empty or remove the error for username input
 
                     //omit function removes/omits the value from given object and returns a new object
-                    let newObj = omit(errors, "username");
+                    let newObj = omit(errors, "fullName");
                     setErrors(newObj);
                     
                 }
@@ -88,11 +90,30 @@ const useForm = (callback) => {
     }
 
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         if(event) event.preventDefault();
 
         if(Object.keys(errors).length === 0 && Object.keys(values).length !==0 ){
             callback();
+            const response = await fetch('/api/protoRoutes', {
+                method: 'POST',
+                body: JSON.stringify(values),
+                headers: {
+                    'Content-Type':'application/json'
+                }
+            });
+           
+            const json = await response.json();
+           
+            if(!response.ok){
+                setErrors(json.error);
+            }
+
+            if(response.ok){
+                setValues('');
+                // setErrors(null)
+                console.log('new Login Added', json)
+            };
 
         }else{
             alert("There is an Error!");
@@ -108,4 +129,4 @@ const useForm = (callback) => {
     }
 }
 
-export default useForm
+export default useForm;

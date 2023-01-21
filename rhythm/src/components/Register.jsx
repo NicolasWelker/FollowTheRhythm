@@ -6,16 +6,6 @@ import "../styles/register.scss";
 
 export const Register =(props) => {
 
-    // const [email, setEmail] = useState('');
-    // const [pass, setPass] = useState('');
-    // const [name, setName] = useState('');
-
-    // const handleSubmit = (e) => {
-    //     e.preventDefault() //otherwise page will be reloaded and we will lose our state
-    //     console.log(email)
-
-    // }
-
     //Final submit function
     const formLogin = () => {
 
@@ -26,7 +16,7 @@ export const Register =(props) => {
     //Custom hook call
     const {handleChange, values,errors,handleSubmit} = useForm(formLogin);
 
-
+     
 
     return (
 
@@ -35,9 +25,9 @@ export const Register =(props) => {
             <form className="register-form" onSubmit={handleSubmit}>
                 <label htmlFor="name">Full name</label>
                 {/* <input value={name} name="name" onChange={(e) => setName(e.target.value)} id="name" placeholder="full Name" /> */}
-                <input type="text" minLength='5' required name="username" placeholder="username"  onChange={handleChange}   />
+                <input type="text" minLength='5' required name="fullName" placeholder="Full name"  onChange={handleChange}   />
                 {
-                    errors.username && <h3>{errors.username}</h3>
+                    errors.fullName && <h3>{errors.fullName}</h3>
                 }
 
                 <label htmlFor="email">email</label>
@@ -54,10 +44,16 @@ export const Register =(props) => {
                     errors.password && <h3>{errors.password}</h3>
                 }
                 <div className= "profileSelect">
-                    <input type="radio" value="Fan" name="profile" /> Fan
-                </div>
-                <div className= "profileSelect">
-                    <input type="radio" value="Artist" name="profile" /> Artist
+                    <input type="radio" value="Fan" name="UType"  onChange={handleChange}/> Fan
+                    {
+                        errors.UType
+                    }
+                {/* </div> */}
+                {/* <div className= "profileSelect"> */}
+                    <input type="radio" value="Artist" name="UType" onChange={handleChange} /> Artist
+                    {
+                        errors.UType
+                    }
                 </div>
                 
                 <button type="submit">Log In</button>
