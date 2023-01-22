@@ -1,9 +1,13 @@
-import { useEffect, useState } from "react"; 
+import { useEffect } from "react"; 
+
+import { useLoginsContext } from "../hooks/useLoginsContext";
+
 
 const GetCurrentLogins = () => {
 
   //create states to set logins
-  const [logins, setLogins] = useState(null )
+
+  const {logins, dispatch} = useLoginsContext();
 
   useEffect(() => {
     const fetchLogins = async () => {
@@ -12,13 +16,12 @@ const GetCurrentLogins = () => {
       
       if (response.ok){
         //update some local states 
-        setLogins(json)
+        dispatch({type: 'SET_LOGINS', payload: json})
       }
     }
 
     fetchLogins()
-
-  }, []) //empty dependency array, meaning it will only fire once when component render
+  }) //empty dependency array, meaning it will only fire once when component render
  
 
   return (

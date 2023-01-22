@@ -2,11 +2,15 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './styles/index.scss';
 import App from './components/App';
+
+import {LoginsContextProvider} from './context/LoginsContext';
  
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <LoginsContextProvider>
+      <App />
+    </LoginsContextProvider>
   </React.StrictMode>
 );
 

@@ -1,8 +1,14 @@
 import React, { useState } from 'react'
 import {omit} from 'lodash'
+import { useLoginsContext } from "../hooks/useLoginsContext";
+
 
 const useForm = (callback) => {
     
+    const {dispatch } = useLoginsContext()
+    // we need to dispatch an action which will update our context state
+    //add a login to global context state
+
     //Form values
     const [values, setValues] = useState({});
     //Errors
@@ -113,6 +119,9 @@ const useForm = (callback) => {
                 setValues('');
                 // setErrors(null)
                 console.log('new Login Added', json)
+                dispatch({type: 'CREATE_LOGIN', payload: json})
+
+
             };
 
         }else{
