@@ -5,6 +5,7 @@ require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const protoRoutes = require('./routes/protoRoutes');
+const userRoutes = require('./routes/userRoutes')
 //express app
 
 const app = express();
@@ -13,7 +14,7 @@ const app = express();
 app.use(express.json()); //allows for req.body
 
 app.use((req, res, next) => { //global middleware
-    console.log(req.path, req.method);
+    // console.log(req.path, req.method);
     next(); //this is just to log all requests
 
 })
@@ -25,13 +26,15 @@ app.use((req, res, next) => { //global middleware
 // });
 
 app.use('/api/protoRoutes', protoRoutes)
+app.use('/api/user', userRoutes)
+
 
 mongoose.connect(process.env.MONGO_URI)
     .then(() => {
         console.log('connected to database')
         //listen to port
         app.listen(process.env.PORT, () => {
-            console.log('listeniing for requests on port', process.env.PORT)
+            console.log('listening for requests on port', process.env.PORT)
         });
     })
     .catch((error) =>{

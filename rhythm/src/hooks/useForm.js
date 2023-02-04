@@ -1,6 +1,7 @@
-import React, { useState } from 'react'
+import { useState } from 'react' 
 import {omit} from 'lodash'
 import { useLoginsContext } from "../hooks/useLoginsContext";
+import { useSignup } from './useSignup';
 
 
 const useForm = (callback) => {
@@ -13,6 +14,9 @@ const useForm = (callback) => {
     const [values, setValues] = useState({});
     //Errors
     const [errors, setErrors] = useState({});
+
+    const {signup, isLoading, error} = useSignup()
+
 
     function hasWhiteSpace(s) {
         return s.indexOf(' ') >= 0;
@@ -62,7 +66,7 @@ const useForm = (callback) => {
                 ){
                     setErrors({
                         ...errors,
-                        password:'Password should contains atleast 8 charaters and containing uppercase,lowercase and numbers'
+                        password:'Password should contains at least 8 charaters and containing uppercase,lowercase and numbers'
                     })
                 }else{
 
@@ -99,34 +103,50 @@ const useForm = (callback) => {
     const handleSubmit = async (event) => {
         if(event) event.preventDefault();
 
+       
+
         if(Object.keys(errors).length === 0 && Object.keys(values).length !==0 ){
             callback();
-            const response = await fetch('/api/protoRoutes', {
-                method: 'POST',
-                body: JSON.stringify(values),
-                headers: {
-                    'Content-Type':'application/json'
+            console.log(`values: ${JSON.stringify(values)}`)
+            // console.log(`values: ${JSON.stringify(values)}`)
+            
+
+            try{
+                // const response = await fetch('/api/user/signup', {
+
+                //     method: 'POST',
+                //     body: JSON.stringify(values),
+                //     headers: {
+                //         'Content-Type':'application/json'
+                //     }
+                // });
+            
+          
+                const response = await signup(values.fullName, values.email, values.password, values.UType)
+                console.log(`response: ${JSON.stringify(response)}`)
+
+                const json = await response.json();
+            
+                if(!response.ok){
+                    setErrors(json.error);
                 }
-            });
-           
-            const json = await response.json();
-           
-            if(!response.ok){
-                setErrors(json.error);
+
+                if(response.ok){
+                    setValues('');
+                    // setErrors(null)
+                    console.log('new Login Added', json)
+                    dispatch({type: 'CREATE_LOGIN', payload: json})
+                };
+            }catch{
+                throw(error.Object)
             }
-
-            if(response.ok){
-                setValues('');
-                // setErrors(null)
-                console.log('new Login Added', json)
-                dispatch({type: 'CREATE_LOGIN', payload: json})
-
-
-            };
+       
+ 
 
         }else{
             alert("There is an Error!");
         }
+
     }
 
 
@@ -134,7 +154,9 @@ const useForm = (callback) => {
         values,
         errors,
         handleChange,
-        handleSubmit
+        handleSubmit,
+        isLoading,
+        error
     }
 }
 

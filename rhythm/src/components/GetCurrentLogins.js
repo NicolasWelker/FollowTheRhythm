@@ -12,6 +12,7 @@ const GetCurrentLogins = () => {
   useEffect(() => {
     const fetchLogins = async () => {
       const response = await fetch('/api/protoRoutes')
+
       const json = await response.json() //array of login objects
       
       if (response.ok){
@@ -21,7 +22,7 @@ const GetCurrentLogins = () => {
     }
 
     fetchLogins()
-  }) //empty dependency array, meaning it will only fire once when component render
+  }) // ,[]) //empty dependency array, meaning it will only fire once when component render
  
 
   return (

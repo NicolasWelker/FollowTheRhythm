@@ -2,31 +2,36 @@
 const express = require('express');
 // const Login = require('../models/loginModel');
 const {
-  createLogin,
-  getLogins,
-  getLogin,
-  deleteLogin,
-  updateLogin,
-} = require('../controllers/loginController')
+  createSignup,
+  deleteALLSignups,
+  getSignups,
+  getSignup,
+  deleteSignup,
+  updateSignup,
+} = require('../controllers/signupController')
 
 const router = express.Router()
 
-// GET all workouts
-router.get('/', getLogins)
+// GET all signup
+router.get('/', getSignups)
 
-// GET a single workout
-router.get('/:id', getLogin)
 
-// POST a new workout
-router.post('/',  createLogin)
+//DELETE entire Signups collection
+router.delete('/DELETEALL', deleteALLSignups)
+
+// GET a single signup
+router.get('/:id', getSignup)
+
+// POST a new signup
+router.post('/',  createSignup)
 
 
 //   res.json({mssg: 'POST a new ___'});
 
-// DELETE a workout
-router.delete('/:id', deleteLogin)
+// DELETE a signup
+ router.delete('/:id', deleteSignup)  
 
-// UPDATE a workout
-router.patch('/:id', updateLogin)
+// UPDATE a signup
+router.patch('/:id', updateSignup)
 
 module.exports = router;

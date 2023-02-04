@@ -1,15 +1,16 @@
 
 
 
-import AuthContext from "./AuthContext";
+import {AuthContext} from "../context/AuthContext";
+import {useContext} from 'react';
 
-
-const useAuthContext = () => {
-    const user = useContext(AuthContext);
-    if (user === undefined) {   
-        throw new Error("useAuthContext can only be used inside AuthProvider");
+//use__context__file just consumes the previously declared context
+export const useAuthContext = () => {
+    const context = useContext(AuthContext);
+    if (!context) {   
+        throw new Error("useAuthContext can only be used inside AuthContextProvider");
     }
-     return user;
+     return context;
 };
 
 // Now if code outside the provider calls AuthContext, 

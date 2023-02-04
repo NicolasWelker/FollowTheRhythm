@@ -4,13 +4,17 @@ import './styles/index.scss';
 import App from './components/App';
 
 import {LoginsContextProvider} from './context/LoginsContext';
- 
+import {AuthContextProvider} from './context/AuthContext';
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <LoginsContextProvider>
-      <App />
-    </LoginsContextProvider>
+    <AuthContextProvider>
+      <LoginsContextProvider>
+        <App />
+      </LoginsContextProvider>
+    </AuthContextProvider>
+
   </React.StrictMode>
 );
 

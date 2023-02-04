@@ -1,26 +1,18 @@
-// import React, {useState} from "react";
-import useForm from "../hooks/useForm";
+import React, {useState} from "react";
 
 import '../styles/App.scss';
 
 export const Login =(props) => {
-    // const [email, setEmail] = useState('');
-    // const [pass, setPass] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
 
-    // const handleSubmit = (e) => {
-    //     e.preventDefault() //otherwise page will be reloaded and we will lose our state
-    //     console.log(email)
+    const handleSubmit = async (e) => {
+        e.preventDefault() //otherwise page will be reloaded and we will lose our state
+        console.log(email)
 
-    // }
-
-    const formLogin = () => {
-
-        console.log("Callback function when form is submitted!");
-        console.log("Form Values ", values);
     }
-    
-    //Custom hook call
-    const {handleChange, values,errors,handleSubmit} = useForm(formLogin);
+
+
 
     return (
 
@@ -30,18 +22,14 @@ export const Login =(props) => {
                 <label htmlFor="email">email</label>
                 {/* <input value={email} onChange={(e) => setEmail(e.target.value)}type="email" placeholder="youremail@gmail.com" id="email" name="email" /> */}
                 
-                <input type="email" name="email" placeholder="E-mail"  onChange={handleChange}   />
-                {
-                    errors.email && <h3>{errors.email}</h3>
-                }
+                <input type="email" name="email" placeholder="E-mail" onChange = {(e)=> setEmail(e.target.value)}  value = {email} />
+          
 
                 <label htmlFor="password">password</label>
                 {/* <input value={pass} onChange={(e) => setPass(e.target.value)} type="password" placeholder="********" id="password" name="password" /> */}
                
-                <input minLength='8' type="password" name="password" placeholder="password"  onChange={handleChange}   />
-                {
-                    errors.password && <h3>{errors.password}</h3>
-                }
+                <input minLength='8' type="password" name="password" placeholder="password"  onChange= { (e) => setPassword=(e.target.value)} value={password}  />
+
 
 
                 {/* <input type="radio" value="Other" name="gender" /> Other        */}
