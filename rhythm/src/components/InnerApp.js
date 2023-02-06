@@ -1,13 +1,11 @@
 
 
 import {useAuthContext} from '../hooks/useAuthContext';
-// import { useLogout } from '../hooks/useLogout'
-import {useLogin} from '../hooks/useLogin'
 import {Login} from './Login';
 import {Register} from './Register';
 import React, {useState} from 'react';
 
-
+import {InnerRhythm} from './InnerRhythm';
 
 export const InnerApp= (props) => {
 
@@ -38,6 +36,10 @@ export const InnerApp= (props) => {
             {user && (
             <div>
               <span>{user.email}</span>
+                        
+                <InnerRhythm/>
+
+
               <button onClick={handleClick}>Log out</button>
             </div>
             )}
@@ -50,12 +52,6 @@ export const InnerApp= (props) => {
                 </div>
              )}
 
-        
-            {/* <div className = "LogoutButton">
-
-                <button type="Logout">Logout</button>
-
-            </div> */}
 
         </div>
     )
