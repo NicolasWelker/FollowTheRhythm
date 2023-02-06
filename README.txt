@@ -1,7 +1,12 @@
 npx create-react-app rhythm
 
 cd rhythm 
-npm start
+npm start 
+// for front
+
+cd behindTheRhytm
+npm run dev
+// for back
 
 npm install node-sass@4.14.1
 

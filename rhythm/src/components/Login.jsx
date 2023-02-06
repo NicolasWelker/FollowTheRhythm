@@ -32,8 +32,6 @@ export const Login =(props) => {
                
                 <input minLength='8' type="password" name="password" placeholder="password"  onChange= { (e) => setPassword(e.target.value)} value={password}  />
 
-
-
                 {/* <input type="radio" value="Other" name="gender" /> Other        */}
 
                 <button disabled= {isLoading}  type="submit">Log In</button>
