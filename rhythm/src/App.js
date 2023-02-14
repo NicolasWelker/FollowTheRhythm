@@ -8,7 +8,7 @@ import GetCurrentLogins from './components/GetCurrentLogins';
 // import {useAuthContext} from './hooks/useAuthContext';
 // import { useLogout } from '../hooks/useLogout'
 
-import {InnerApp} from './components/InnerApp'
+import InnerApp from './components/InnerApp'
 require('react-dom');
 window.React2 = require('react');
 console.log(window.React1 === window.React2);
@@ -28,21 +28,8 @@ function App() {
         <CustomHeader title="Follow The Rhythm" subtitle="You followed the rhythm, and it led you here" /> 
     
       {/* <hr></hr> */}
-        <InnerApp></InnerApp>
-      {/* {
-        currentForm === 'login' ? <Login onFormSwitch = {toggleForm} /> : <Register onFormSwitch = {toggleForm}/>
-      }
-      
-      <div className = "LogoutButton">
+        <InnerApp/>
 
-        <button type="Logout">Logout</button>
-
-      </div> */}
-
-
-      <div className = "test">
-        <GetCurrentLogins/>
-      </div>
 
     </div>
   );

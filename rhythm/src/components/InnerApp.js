@@ -7,7 +7,7 @@ import React, {useState} from 'react';
 
 import {InnerRhythm} from './InnerRhythm';
 
-export const InnerApp= (props) => {
+function InnerApp() {
 
     const {dispatch} = useAuthContext()
 
@@ -56,3 +56,5 @@ export const InnerApp= (props) => {
         </div>
     )
 }
+
+export default InnerApp;
