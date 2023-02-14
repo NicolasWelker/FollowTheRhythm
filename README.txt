@@ -17,3 +17,13 @@ npm install jsonwebtoken
 
 rm -rf node_modules/
 npm update
+
+
+//2-13-23 UPDATE
+To do list:
+
+-link users with their content
+-Allow artists to post an event
+-Dummy data
+-create a feed.
+-allow fans to see artists event
