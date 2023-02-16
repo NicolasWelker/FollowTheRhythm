@@ -1,17 +1,22 @@
 import { useEffect } from "react"; 
 
 import { useLoginsContext } from "../hooks/useLoginsContext";
-
+import { useAuthContext } from "../hooks/useAuthContext";
 
 const GetCurrentLogins = () => {
 
   //create states to set logins
 
   const {logins, dispatch} = useLoginsContext();
+  const {user} = useAuthContext()
 
   useEffect(() => {
     const fetchLogins = async () => {
-      const response = await fetch('/api/protoRoutes')
+      const response = await fetch('/api/protoRoutes', {
+        headers: {
+          'Authorization': `Bearer ${user.token}`
+        }
+      })  
 
       const json = await response.json() //array of login objects
       
@@ -21,8 +26,11 @@ const GetCurrentLogins = () => {
       }
     }
 
-    fetchLogins()
-  }) // ,[]) //empty dependency array, meaning it will only fire once when component render
+    if(user){
+      fetchLogins() //Since we are using `user` inside useEffect() 
+      // it needs to be added as a dependency
+    }
+  } ,[dispatch , user]) 
  
 
   return (

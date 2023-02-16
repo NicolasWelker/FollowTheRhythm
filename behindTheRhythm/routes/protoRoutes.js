@@ -10,7 +10,13 @@ const {
   updateSignup,
 } = require('../controllers/signupController')
 
+const requireAuth = require('../middleware/requireAuth')
+
+
 const router = express.Router()
+//require auth for all user route before it can proceed with the routes.
+router.use(requireAuth)
+
 
 // GET all signup
 router.get('/', getSignups)
